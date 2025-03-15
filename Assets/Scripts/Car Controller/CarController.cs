@@ -21,7 +21,6 @@ public class CarController : NetworkBehaviour
     {
         _carEffects.StartEngineSound();
 
-
         if (Object.HasInputAuthority)
         {
             _currentCameraManager = Instantiate(_cameraPrefab);
@@ -40,7 +39,7 @@ public class CarController : NetworkBehaviour
 
     private void SetPlayerInfo()
     {
-        if(Object.HasStateAuthority)
+        if (Object.HasStateAuthority)
         {
             _player.name = $"Player {Random.Range(5000, 10000)}";
             _nameTagUI.SetPlayerName(_player.name);
@@ -102,7 +101,7 @@ public class Player
     [Networked] public int checkpointsPassed { get; set; }
     [Networked] public CheckPoint currentCheckpoint { get; set; }
     [Networked] public float distanceToNextCheckpoint { get; set; }
-    [Networked] public int position { get; set; } // Calculated position
+    [Networked] public int position { get; set; }
     [Networked] public float lapStartTime { get; set; }
     [Networked] public float lapEndTime { get; set; }
 

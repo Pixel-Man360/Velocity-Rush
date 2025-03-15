@@ -20,14 +20,15 @@ public class NetworkRaceManager : NetworkBehaviour
 
     private bool _isCountdownFinished = false;
     private List<CarController> _players = new List<CarController>();
+    private List<CarController> _sortedPlayers = new List<CarController>();
     private Dictionary<int, CheckPoint> _checkPointDictionary = new Dictionary<int, CheckPoint>();
 
-    [Networked] private float lapTime { get; set; }
+    private float lapTime;
     [Networked] private bool _raceStarted { get; set; }
 
     public static NetworkRaceManager Instance { get; private set; }
 
-    private List<CarController> _sortedPlayers = new List<CarController>();
+
 
     void Awake()
     {
@@ -68,7 +69,7 @@ public class NetworkRaceManager : NetworkBehaviour
     {
         if (!_isCountdownFinished) return;
         CalculateDistance();
-        CheckPlayerLap();
+        UpdatePlayerPositions();
         SetLapTime();
     }
 
@@ -78,37 +79,49 @@ public class NetworkRaceManager : NetworkBehaviour
         _lapTimeText.text = $"Lap Time: {FormatTime(elapsedTime)}";
     }
 
-    private void CheckPlayerLap()
+    private void UpdatePlayerPositions()
     {
+        // Sort players by checkpoints passed and distance to the next checkpoint
         _sortedPlayers = _players.OrderByDescending(p => p.Player.checkpointsPassed)
                                  .ThenBy(p => p.Player.distanceToNextCheckpoint)
                                  .ToList();
 
+        // Update the positions and broadcast to clients
         for (int i = 0; i < _sortedPlayers.Count; i++)
         {
-            _sortedPlayers[i].Player.position = i + 1; // 1-based position
-            UpdatePositionRPC(i + 1, _sortedPlayers[i].Player.name);
+            int position = i + 1;
+            _sortedPlayers[i].Player.position = position;
+
+            // Show positions on the UI (for the host)
+            if (Object.HasStateAuthority)
+            {
+                _playerPositionUI[i].SetPlayerPosition(position, _sortedPlayers[i].Player.name);
+            }
         }
 
-        for (int i = 0; i < _sortedPlayers.Count; i++)
+        // Update positions for clients via RPC
+        if (Object.HasStateAuthority)
         {
-            _playerPositionUI[i].SetPlayerPosition(_sortedPlayers[i].Player.position, _sortedPlayers[i].Player.name);
-        }
-
-        for (int i = _sortedPlayers.Count; i < _playerPositionUI.Count; i++)
-        {
-            _playerPositionUI[i].SetPlayerPosition(i + 1, "No Player");
+            RPC_UpdatePlayerPositions();
         }
     }
 
     [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
-    private void UpdatePositionRPC(int position, string playerName)
+    private void RPC_UpdatePlayerPositions()
     {
-        foreach (var ui in _playerPositionUI)
+        for (int i = 0; i < _sortedPlayers.Count; i++)
         {
-            ui.SetPlayerPosition(position, playerName);
+            int position = i + 1;
+            string playerName = _sortedPlayers[i].Player.name;
+
+            // Update the UI for each player
+            if (i < _playerPositionUI.Count)
+            {
+                _playerPositionUI[i].SetPlayerPosition(position, playerName);
+            }
         }
     }
+
 
     private void CalculateDistance()
     {
@@ -141,7 +154,6 @@ public class NetworkRaceManager : NetworkBehaviour
     {
         if (Object.HasStateAuthority)
         {
-            Debug.Log("Starting race countdown on host!");
             RPC_StartCountdown(countdown);
         }
     }
@@ -149,7 +161,6 @@ public class NetworkRaceManager : NetworkBehaviour
     [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
     private void RPC_StartCountdown(int countdown)
     {
-        Debug.Log($"RPC: Starting Countdown {countdown}");
         _countdownText.StartCountdown(countdown);
     }
 
