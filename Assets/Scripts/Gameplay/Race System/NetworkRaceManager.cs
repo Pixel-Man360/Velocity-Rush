@@ -129,16 +129,28 @@ public class NetworkRaceManager : NetworkBehaviour
         }
         if (playerCount >= _minPlayersToStart && !_raceStarted)
         {
-            if (Object.HasStateAuthority)
-            {
-                _countdownText.StartCountdown(5);
-                _countdownText.gameObject.SetActive(true);
-                _raceStarted = true;
 
-                SetCheckPointText(-1);
-            }
+            StartRaceCountdown(5);
+            _raceStarted = true;
 
+            SetCheckPointText(-1);
         }
+    }
+
+    private void StartRaceCountdown(int countdown)
+    {
+        if (Object.HasStateAuthority)
+        {
+            Debug.Log("Starting race countdown on host!");
+            RPC_StartCountdown(countdown);
+        }
+    }
+
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    private void RPC_StartCountdown(int countdown)
+    {
+        Debug.Log($"RPC: Starting Countdown {countdown}");
+        _countdownText.StartCountdown(countdown);
     }
 
     public CheckPoint GetNextCheckPoint(int checkPointIndex)

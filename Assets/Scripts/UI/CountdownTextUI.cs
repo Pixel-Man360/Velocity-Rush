@@ -10,39 +10,34 @@ public class CountdownTextUI : NetworkBehaviour
     [SerializeField] private TMP_Text _countdownText;
     [SerializeField] private float _countdownTime = 5f;
 
-    [Networked]  private float _countdown { get; set; }
-
     public static event Action OnCountDownFinished;
 
     public void StartCountdown(int countdown)
     {
-        if (Object.HasStateAuthority)
-        {
-            _countdown = countdown;
-            _countdownText.gameObject.SetActive(true);
-            StartCoroutine(Start_Countdown());
-        }
+        _countdownText.gameObject.SetActive(true);
+        StartCoroutine(StartCountdownCoroutine(countdown));
     }
 
-    private IEnumerator Start_Countdown()
+    private IEnumerator StartCountdownCoroutine(int countdown)
     {
-        while (_countdown > 0)
+        int currentCount = countdown;
+
+        while (currentCount > 0)
         {
-            UpdateCountdownUI();
+            UpdateCountdownUI(currentCount);
             yield return new WaitForSeconds(1f);
-            _countdown--;
+            currentCount--;
         }
 
         _countdownText.text = "GO!";
         OnCountDownFinished?.Invoke();
-
         yield return new WaitForSeconds(1f);
         _countdownText.gameObject.SetActive(false);
     }
 
-    private void UpdateCountdownUI()
+    private void UpdateCountdownUI(int value)
     {
-        _countdownText.text = Mathf.Ceil(_countdown).ToString();
+        _countdownText.text = value.ToString();
         _countdownText.transform.DOPunchScale(Vector3.one * 0.1f, 0.2f, 1);
     }
 }
