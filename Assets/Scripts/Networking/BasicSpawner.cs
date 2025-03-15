@@ -11,11 +11,11 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 {
     [SerializeField] private NetworkPrefabRef[] _playerPrefabs;
     [SerializeField] private Transform[] _spawnPoints;
+    [SerializeField] private NetworkRaceManager _raceManager;
     
     private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
     private NetworkRunner _runner;
     private int _playerCount = 0;
-
 
     public async void StartGame(GameMode mode)
     {
@@ -62,6 +62,8 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             // Keep track of the player avatars for easy access
             _spawnedCharacters.Add(player, networkPlayerObject);
         }
+
+        _raceManager.OnPlayerJoined(_playerCount);
     }
 
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)

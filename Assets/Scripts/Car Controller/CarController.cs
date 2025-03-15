@@ -10,9 +10,9 @@ public class CarController : NetworkBehaviour
     [SerializeField] private CameraManager _cameraPrefab;
 
     private CameraManager _currentCameraManager;
-
-
     private NetworkInputData _input;
+
+    private bool _canMove = false;
 
     void Start()
     {
@@ -24,13 +24,18 @@ public class CarController : NetworkBehaviour
             _currentCameraManager = Instantiate(_cameraPrefab);
             _currentCameraManager.SetTarget(transform);
         }
-            
-     
+
+        CountdownTextUI.OnCountDownFinished += () => _canMove = true;
+    }
+
+    void OnDestroy()
+    {
+        CountdownTextUI.OnCountDownFinished -= () => _canMove = true;
     }
 
     public override void FixedUpdateNetwork()
     {
-        if (GetInput(out _input))
+        if (GetInput(out _input) && _canMove)
         {
             _carMovement.Move(_input.Horizontal, _input.Vertical, _input.IsHandbraking, _input.IsBoosting);
             _carEffects.BrakeFeel(_input.IsHandbraking, _carMovement.IsSlipping, _input.Vertical);
