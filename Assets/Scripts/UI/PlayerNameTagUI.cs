@@ -7,9 +7,9 @@ public class PlayerNameTagUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text _playerNameText;
 
-    private void Start()
+    public void SetPlayerName(string playerName)
     {
-        _playerNameText.text = $"Player {Random.Range(5000, 10000)}";
+        _playerNameText.text = playerName;
     }
 
 }

@@ -8,29 +8,44 @@ public class CarController : NetworkBehaviour
     [SerializeField] private CarMovement _carMovement; //To separate the car movement from the car controller
     [SerializeField] private CarEffects _carEffects; //To separate the car feedbacks from the car controller
     [SerializeField] private CameraManager _cameraPrefab;
+    [SerializeField] private PlayerNameTagUI _nameTagUI;
 
     private CameraManager _currentCameraManager;
     private NetworkInputData _input;
 
     private bool _canMove = false;
+    private Player _player = new Player();
+    public Player Player => _player;
 
     void Start()
     {
         _carEffects.StartEngineSound();
-        
 
-        if(Object.HasInputAuthority)
+
+        if (Object.HasInputAuthority)
         {
             _currentCameraManager = Instantiate(_cameraPrefab);
             _currentCameraManager.SetTarget(transform);
         }
 
         CountdownTextUI.OnCountDownFinished += () => _canMove = true;
+
+        SetPlayerInfo();
     }
 
     void OnDestroy()
     {
         CountdownTextUI.OnCountDownFinished -= () => _canMove = true;
+    }
+
+    private void SetPlayerInfo()
+    {
+        _player.name = $"Player {Random.Range(5000, 10000)}";
+        _nameTagUI.SetPlayerName(_player.name);
+        _player.currentCheckpoint = NetworkRaceManager.Instance.GetNextCheckPoint(0);
+        _player.checkpointsPassed = 0;
+        _player.distanceToNextCheckpoint = 0;
+        _player.position = 0;
     }
 
     public override void FixedUpdateNetwork()
@@ -40,20 +55,50 @@ public class CarController : NetworkBehaviour
             _carMovement.Move(_input.Horizontal, _input.Vertical, _input.IsHandbraking, _input.IsBoosting);
             _carEffects.BrakeFeel(_input.IsHandbraking, _carMovement.IsSlipping, _input.Vertical);
         }
-        
+
         _carMovement.UpdateWheelMeshes();
         _carMovement.CheckTraction();
-        
+
         _carEffects.UpdateEngineSound(_carMovement.GetSpeed());
     }
 
     void OnCollisionEnter(Collision collision)
     {
         _carEffects.PlayCollisionSound();
-        if(_currentCameraManager != null)
+        if (_currentCameraManager != null)
             _currentCameraManager.DoCollisionShake();
 
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out CheckPoint checkPoint))
+        {
+            if (checkPoint.CheckPointType == CheckPointType.FinishLine)
+            {
+                NetworkRaceManager.Instance.OnPlayerReachedFinishLine(_player);
+            }
+
+            else
+            {
+                _player.checkpointsPassed++;
+                _player.currentCheckpoint = NetworkRaceManager.Instance.GetNextCheckPoint(checkPoint.CheckPointIndex + 1);
+            }
+        }
+    }
+}
+
+[System.Serializable]
+public class Player
+{
+    public string name;
+    public int checkpointsPassed;
+    public CheckPoint currentCheckpoint;
+    public float distanceToNextCheckpoint;
+    public int position; // Calculated position
+    public float lapStartTime;
+    public float lapEndTime;
+
 }
 
 [System.Serializable]
@@ -70,11 +115,11 @@ public class CarMovement
 
     public bool IsSlipping { get; private set; }
 
-  
+
     internal void Move(float steerInput, float throttleInput, bool isHandbraking, bool isNitro)
     {
         float currentTorque = _maxMotorTorque * (isNitro ? _nitroBoost : 1f) * throttleInput;
-        
+
         for (int i = 0; i < _wheelColliders.Length; i++)
         {
             _wheelColliders[i].motorTorque = currentTorque;
@@ -134,7 +179,7 @@ public class CarEffects
         _engineSound.Play();
     }
 
-  
+
     internal void UpdateEngineSound(float speed)
     {
         _engineSound.pitch = Mathf.Lerp(1f, 3f, speed / 100f);

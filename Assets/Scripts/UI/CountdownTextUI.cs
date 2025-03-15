@@ -24,8 +24,6 @@ public class CountdownTextUI : MonoBehaviour
 
     private IEnumerator Start_Countdown()
     {
-        
-
         while (_countdown > 0)
         {
             _countdownText.text = Mathf.Ceil(_countdown).ToString();

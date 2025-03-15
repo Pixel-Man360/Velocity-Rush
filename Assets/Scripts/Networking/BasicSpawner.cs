@@ -33,11 +33,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
         // Create the NetworkSceneInfo from the current scene
         var scene = SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex);
-        // var sceneInfo = new NetworkSceneInfo();
-        // if (scene.IsValid) {
-        //     sceneInfo.AddSceneRef(scene, LoadSceneMode.Additive);
-        // }
-
+  
         // Start or join (depends on gamemode) a session with a specific name
         await _runner.StartGame(new StartGameArgs()
         {
@@ -61,9 +57,10 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
             // Keep track of the player avatars for easy access
             _spawnedCharacters.Add(player, networkPlayerObject);
+            _raceManager.OnPlayerJoined(_playerCount, networkPlayerObject.GetComponent<CarController>());
         }
 
-        _raceManager.OnPlayerJoined(_playerCount);
+        
     }
 
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)

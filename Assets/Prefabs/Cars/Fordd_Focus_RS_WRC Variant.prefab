@@ -1037,6 +1037,7 @@ MonoBehaviour:
     - {fileID: 799378691460586781}
   _cameraPrefab: {fileID: 5817448813263148795, guid: abd5913da1f66b643acf7e3ef9a53f31,
     type: 3}
+  _nameTagUI: {fileID: 3731964672716666597}
 --- !u!54 &5601836840684622854
 Rigidbody:
   m_ObjectHideFlags: 0
