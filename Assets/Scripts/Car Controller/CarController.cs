@@ -2,31 +2,40 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Fusion;
+using Fusion.Addons.Physics;
 public class CarController : NetworkBehaviour
 {
-    // [SerializeField] private PlayerInputController _input; //To separate the input from the car controller
     [SerializeField] private CarMovement _carMovement; //To separate the car movement from the car controller
     [SerializeField] private CarEffects _carEffects; //To separate the car feedbacks from the car controller
+    [SerializeField] private CameraManager _cameraPrefab;
+
+    private CameraManager _currentCameraManager;
+
 
     private NetworkInputData _input;
+
     void Start()
     {
         _carEffects.StartEngineSound();
-    }
+        
 
-    void OnEnable()
-    {
-        CameraManager.Instance.SetTarget(transform);
+        if(Object.HasInputAuthority)
+        {
+            _currentCameraManager = Instantiate(_cameraPrefab);
+            _currentCameraManager.SetTarget(transform);
+        }
+            
+     
     }
 
     public override void FixedUpdateNetwork()
     {
-        if(GetInput(out _input))
+        if (GetInput(out _input))
         {
             _carMovement.Move(_input.Horizontal, _input.Vertical, _input.IsHandbraking, _input.IsBoosting);
             _carEffects.BrakeFeel(_input.IsHandbraking, _carMovement.IsSlipping, _input.Vertical);
         }
-       
+        
         _carMovement.UpdateWheelMeshes();
         _carMovement.CheckTraction();
         
@@ -36,6 +45,9 @@ public class CarController : NetworkBehaviour
     void OnCollisionEnter(Collision collision)
     {
         _carEffects.PlayCollisionSound();
+        if(_currentCameraManager != null)
+            _currentCameraManager.DoCollisionShake();
+
     }
 }
 
@@ -44,7 +56,7 @@ public class CarMovement
 {
     [SerializeField] private WheelCollider[] _wheelColliders;
     [SerializeField] private Transform[] _wheelMeshes;
-    [SerializeField] private Rigidbody _rb;
+    [SerializeField] private NetworkRigidbody3D _rb;
     [SerializeField] private float _maxMotorTorque;
     [SerializeField] private float _maxSteerAngle;
     [SerializeField] private float _handbrakeForce;
@@ -61,7 +73,7 @@ public class CarMovement
         for (int i = 0; i < _wheelColliders.Length; i++)
         {
             _wheelColliders[i].motorTorque = currentTorque;
-            _wheelColliders[i].brakeTorque = isHandbraking ? _handbrakeForce : 0;
+            _wheelColliders[i].brakeTorque = isHandbraking ? _handbrakeForce : 0f;
         }
 
         _wheelColliders[0].steerAngle = _maxSteerAngle * steerInput;
@@ -98,7 +110,7 @@ public class CarMovement
 
     internal float GetSpeed()
     {
-        return _rb.velocity.magnitude;
+        return _rb.Rigidbody.velocity.magnitude;
     }
 }
 
@@ -143,6 +155,5 @@ public class CarEffects
     internal void PlayCollisionSound()
     {
         _collisionSound.Play();
-        CameraManager.Instance.DoCollisionShake();
     }
 }
