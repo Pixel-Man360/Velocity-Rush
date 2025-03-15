@@ -1,0 +1,382 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &9021530252010198871
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3570467722899339742, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3570467722899339742, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 139.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 3570467722899339742, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.8868967
+      objectReference: {fileID: 0}
+    - target: {fileID: 3570467722899339742, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -298.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 3570467722899339742, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3570467722899339742, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 7.1054274e-15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3570467722899339742, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3570467722899339742, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3570467722899339742, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3570467722899339742, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3570467722899339742, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6096161435309845058, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: m_Name
+      value: Fiatt_131 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618481744332152296, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: _carMovement._rb
+      value: 
+      objectReference: {fileID: 7260661340253249783}
+    - target: {fileID: 7618481744332152296, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: _carEffects._brakeSound
+      value: 
+      objectReference: {fileID: 263067586314268440}
+    - target: {fileID: 7618481744332152296, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: _carEffects._engineSound
+      value: 
+      objectReference: {fileID: 8296382917184207507}
+    - target: {fileID: 7618481744332152296, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: _carMovement._nitroBoost
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618481744332152296, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: _carEffects._collisionSound
+      value: 
+      objectReference: {fileID: 5958022586454138211}
+    - target: {fileID: 7618481744332152296, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: _carMovement._maxSteerAngle
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618481744332152296, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: _carMovement._slipThreshold
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618481744332152296, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: _carMovement._handbrakeForce
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618481744332152296, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: _carMovement._maxMotorTorque
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618481744332152296, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: _carEffects._skidsmoke.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618481744332152296, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: _carEffects._tireMarks.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618481744332152296, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: _carEffects._skidsmoke.Array.data[0]
+      value: 
+      objectReference: {fileID: 4900276109350304452}
+    - target: {fileID: 7618481744332152296, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: _carEffects._skidsmoke.Array.data[1]
+      value: 
+      objectReference: {fileID: 1158320057421634192}
+    - target: {fileID: 7618481744332152296, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: _carEffects._skidsmoke.Array.data[2]
+      value: 
+      objectReference: {fileID: 8814857926266388941}
+    - target: {fileID: 7618481744332152296, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: _carEffects._skidsmoke.Array.data[3]
+      value: 
+      objectReference: {fileID: 5496432055319292614}
+    - target: {fileID: 7618481744332152296, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: _carEffects._tireMarks.Array.data[0]
+      value: 
+      objectReference: {fileID: 9011294414567107413}
+    - target: {fileID: 7618481744332152296, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: _carEffects._tireMarks.Array.data[1]
+      value: 
+      objectReference: {fileID: 90652053332597089}
+    - target: {fileID: 7618481744332152296, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: _carEffects._tireMarks.Array.data[2]
+      value: 
+      objectReference: {fileID: 7090643006279129973}
+    - target: {fileID: 7618481744332152296, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: _carEffects._tireMarks.Array.data[3]
+      value: 
+      objectReference: {fileID: 1452446767552744882}
+    - target: {fileID: 7618481744332152296, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: _carMovement._wheelMeshes.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618481744332152296, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: _carMovement._wheelColliders.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618481744332152296, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: _carMovement._wheelMeshes.Array.data[0]
+      value: 
+      objectReference: {fileID: 274933438923242612}
+    - target: {fileID: 7618481744332152296, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: _carMovement._wheelMeshes.Array.data[1]
+      value: 
+      objectReference: {fileID: 1809464408816278138}
+    - target: {fileID: 7618481744332152296, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: _carMovement._wheelMeshes.Array.data[2]
+      value: 
+      objectReference: {fileID: 6750658296285000498}
+    - target: {fileID: 7618481744332152296, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: _carMovement._wheelMeshes.Array.data[3]
+      value: 
+      objectReference: {fileID: 2978071477918107971}
+    - target: {fileID: 7618481744332152296, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: _carMovement._wheelColliders.Array.data[0]
+      value: 
+      objectReference: {fileID: 4454922361106995875}
+    - target: {fileID: 7618481744332152296, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: _carMovement._wheelColliders.Array.data[1]
+      value: 
+      objectReference: {fileID: 4166891980205406037}
+    - target: {fileID: 7618481744332152296, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: _carMovement._wheelColliders.Array.data[2]
+      value: 
+      objectReference: {fileID: 3045268194533566814}
+    - target: {fileID: 7618481744332152296, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      propertyPath: _carMovement._wheelColliders.Array.data[3]
+      value: 
+      objectReference: {fileID: 3825077211144631267}
+    m_RemovedComponents:
+    - {fileID: 7928181384527185680, guid: 92dc9059c105be646920e7793f7b87ad, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6096161435309845058, guid: 92dc9059c105be646920e7793f7b87ad,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -794306404071112430}
+  m_SourcePrefab: {fileID: 100100000, guid: 92dc9059c105be646920e7793f7b87ad, type: 3}
+--- !u!96 &90652053332597089 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 8966920264328580662, guid: 92dc9059c105be646920e7793f7b87ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 9021530252010198871}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &263067586314268440 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 9121042019264526415, guid: 92dc9059c105be646920e7793f7b87ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 9021530252010198871}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &274933438923242612 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9142917982985874211, guid: 92dc9059c105be646920e7793f7b87ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 9021530252010198871}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1158320057421634192 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7863781945141988807, guid: 92dc9059c105be646920e7793f7b87ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 9021530252010198871}
+  m_PrefabAsset: {fileID: 0}
+--- !u!96 &1452446767552744882 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 7573587088451787493, guid: 92dc9059c105be646920e7793f7b87ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 9021530252010198871}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1479609771210656447 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7618481744332152296, guid: 92dc9059c105be646920e7793f7b87ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 9021530252010198871}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3002497363065847061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb64ed733680a4c48b06636b54263e53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1809464408816278138 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7218825715045027117, guid: 92dc9059c105be646920e7793f7b87ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 9021530252010198871}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2978071477918107971 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6081783420513033748, guid: 92dc9059c105be646920e7793f7b87ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 9021530252010198871}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3002497363065847061 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6096161435309845058, guid: 92dc9059c105be646920e7793f7b87ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 9021530252010198871}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-794306404071112430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3002497363065847061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 3534002521
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 1479609771210656447}
+  ForceRemoteRenderTimeframe: 0
+--- !u!146 &3045268194533566814 stripped
+WheelCollider:
+  m_CorrespondingSourceObject: {fileID: 6300569682323045897, guid: 92dc9059c105be646920e7793f7b87ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 9021530252010198871}
+  m_PrefabAsset: {fileID: 0}
+--- !u!146 &3825077211144631267 stripped
+WheelCollider:
+  m_CorrespondingSourceObject: {fileID: 5199280985047671988, guid: 92dc9059c105be646920e7793f7b87ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 9021530252010198871}
+  m_PrefabAsset: {fileID: 0}
+--- !u!146 &4166891980205406037 stripped
+WheelCollider:
+  m_CorrespondingSourceObject: {fileID: 4963300880239763458, guid: 92dc9059c105be646920e7793f7b87ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 9021530252010198871}
+  m_PrefabAsset: {fileID: 0}
+--- !u!146 &4454922361106995875 stripped
+WheelCollider:
+  m_CorrespondingSourceObject: {fileID: 4675292489374502388, guid: 92dc9059c105be646920e7793f7b87ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 9021530252010198871}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &4900276109350304452 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4121830360242351507, guid: 92dc9059c105be646920e7793f7b87ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 9021530252010198871}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &5496432055319292614 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3563990123477630353, guid: 92dc9059c105be646920e7793f7b87ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 9021530252010198871}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &5958022586454138211 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3431122855467174452, guid: 92dc9059c105be646920e7793f7b87ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 9021530252010198871}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6750658296285000498 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2350261094575924325, guid: 92dc9059c105be646920e7793f7b87ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 9021530252010198871}
+  m_PrefabAsset: {fileID: 0}
+--- !u!96 &7090643006279129973 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 2257974431607557154, guid: 92dc9059c105be646920e7793f7b87ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 9021530252010198871}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &7260661340253249783 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 1869527050075174816, guid: 92dc9059c105be646920e7793f7b87ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 9021530252010198871}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &8296382917184207507 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1013386580433317316, guid: 92dc9059c105be646920e7793f7b87ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 9021530252010198871}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8814857926266388941 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 533187702148241050, guid: 92dc9059c105be646920e7793f7b87ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 9021530252010198871}
+  m_PrefabAsset: {fileID: 0}
+--- !u!96 &9011294414567107413 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 17000038420577282, guid: 92dc9059c105be646920e7793f7b87ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 9021530252010198871}
+  m_PrefabAsset: {fileID: 0}
