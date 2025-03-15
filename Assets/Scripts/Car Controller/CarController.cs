@@ -40,12 +40,15 @@ public class CarController : NetworkBehaviour
 
     private void SetPlayerInfo()
     {
-        _player.name = $"Player {Random.Range(5000, 10000)}";
-        _nameTagUI.SetPlayerName(_player.name);
-        _player.currentCheckpoint = NetworkRaceManager.Instance.GetNextCheckPoint(0);
-        _player.checkpointsPassed = 0;
-        _player.distanceToNextCheckpoint = 0;
-        _player.position = 0;
+        if(Object.HasStateAuthority)
+        {
+            _player.name = $"Player {Random.Range(5000, 10000)}";
+            _nameTagUI.SetPlayerName(_player.name);
+            _player.currentCheckpoint = NetworkRaceManager.Instance.GetNextCheckPoint(0);
+            _player.checkpointsPassed = 0;
+            _player.distanceToNextCheckpoint = 0;
+            _player.position = 0;
+        }
     }
 
     public override void FixedUpdateNetwork()
@@ -81,7 +84,11 @@ public class CarController : NetworkBehaviour
 
             else
             {
-                _player.checkpointsPassed++;
+                if (Object.HasStateAuthority)
+                {
+                    _player.checkpointsPassed++;
+                }
+
                 _player.currentCheckpoint = NetworkRaceManager.Instance.GetNextCheckPoint(checkPoint.CheckPointIndex + 1);
             }
         }
@@ -91,13 +98,13 @@ public class CarController : NetworkBehaviour
 [System.Serializable]
 public class Player
 {
-    public string name;
-    public int checkpointsPassed;
-    public CheckPoint currentCheckpoint;
-    public float distanceToNextCheckpoint;
-    public int position; // Calculated position
-    public float lapStartTime;
-    public float lapEndTime;
+    [Networked] public string name { get; set; }
+    [Networked] public int checkpointsPassed { get; set; }
+    [Networked] public CheckPoint currentCheckpoint { get; set; }
+    [Networked] public float distanceToNextCheckpoint { get; set; }
+    [Networked] public int position { get; set; } // Calculated position
+    [Networked] public float lapStartTime { get; set; }
+    [Networked] public float lapEndTime { get; set; }
 
 }
 

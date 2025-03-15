@@ -17,12 +17,13 @@ public class NetworkRaceManager : NetworkBehaviour
     [SerializeField] private Transform gameOverPanel;
     [SerializeField] private TMP_Text _lapTimeText;
     [SerializeField] private TMP_Text _checkPointText;
-    private bool _raceStarted = false;
+
     private bool _isCountdownFinished = false;
     private List<CarController> _players = new List<CarController>();
     private Dictionary<int, CheckPoint> _checkPointDictionary = new Dictionary<int, CheckPoint>();
 
-    private float lapTime;
+    [Networked] private float lapTime { get; set; }
+    [Networked] private bool _raceStarted { get; set; }
 
     public static NetworkRaceManager Instance { get; private set; }
 
@@ -61,16 +62,10 @@ public class NetworkRaceManager : NetworkBehaviour
     {
         _isCountdownFinished = true;
         lapTime = Time.time;
-
-        for (int i = 0; i < _players.Count; i++)
-        {
-            _players[i].Player.lapStartTime = Time.time;
-        }
     }
 
     void Update()
     {
-        if (!_raceStarted) return;
         if (!_isCountdownFinished) return;
         CalculateDistance();
         CheckPlayerLap();
@@ -86,12 +81,13 @@ public class NetworkRaceManager : NetworkBehaviour
     private void CheckPlayerLap()
     {
         _sortedPlayers = _players.OrderByDescending(p => p.Player.checkpointsPassed)
-                                   .ThenBy(p => p.Player.distanceToNextCheckpoint)
-                                   .ToList();
+                                 .ThenBy(p => p.Player.distanceToNextCheckpoint)
+                                 .ToList();
 
         for (int i = 0; i < _sortedPlayers.Count; i++)
         {
             _sortedPlayers[i].Player.position = i + 1; // 1-based position
+            UpdatePositionRPC(i + 1, _sortedPlayers[i].Player.name);
         }
 
         for (int i = 0; i < _sortedPlayers.Count; i++)
@@ -105,13 +101,22 @@ public class NetworkRaceManager : NetworkBehaviour
         }
     }
 
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    private void UpdatePositionRPC(int position, string playerName)
+    {
+        foreach (var ui in _playerPositionUI)
+        {
+            ui.SetPlayerPosition(position, playerName);
+        }
+    }
+
     private void CalculateDistance()
     {
-        for (int i = 0; i < _players.Count; i++)
+        foreach (var player in _players)
         {
-            if (_players[i].Player.currentCheckpoint != null)
+            if (player.Player.currentCheckpoint != null)
             {
-                _players[i].Player.distanceToNextCheckpoint = Vector3.Distance(_players[i].transform.position, _players[i].Player.currentCheckpoint.transform.position);
+                player.Player.distanceToNextCheckpoint = Vector3.Distance(player.transform.position, player.Player.currentCheckpoint.transform.position);
             }
         }
     }
@@ -124,23 +129,22 @@ public class NetworkRaceManager : NetworkBehaviour
         }
         if (playerCount >= _minPlayersToStart && !_raceStarted)
         {
-            _countdownText.StartCountdown(5);
-            _countdownText.gameObject.SetActive(true);
-            _raceStarted = true;
+            if (Object.HasStateAuthority)
+            {
+                _countdownText.StartCountdown(5);
+                _countdownText.gameObject.SetActive(true);
+                _raceStarted = true;
 
-            SetCheckPointText(-1);
+                SetCheckPointText(-1);
+            }
+
         }
     }
 
     public CheckPoint GetNextCheckPoint(int checkPointIndex)
     {
         SetCheckPointText(checkPointIndex);
-
-        if (checkPointIndex >= _checkPoints.Count)
-        {
-            checkPointIndex = _checkPoints.Count - 1;
-        }
-        return _checkPointDictionary[checkPointIndex];
+        return _checkPointDictionary[Mathf.Clamp(checkPointIndex, 0, _checkPoints.Count - 1)];
     }
 
     private void SetCheckPointText(int checkPointIndex)
@@ -165,16 +169,7 @@ public class NetworkRaceManager : NetworkBehaviour
         for (int i = 0; i < _sortedPlayers.Count; i++)
         {
             _rankUI[i].SetPlayerPosition(i + 1, _sortedPlayers[i].Player.name);
-
-            if(_sortedPlayers[i].Player == player)
-            {
-                _rankUI[i].SetLapTime(FormatTime(player.lapEndTime - player.lapStartTime));
-            }
-
-            else 
-            {
-                _rankUI[i].SetLapTime(FormatTime(Time.time - _sortedPlayers[i].Player.lapStartTime));
-            }
+            _rankUI[i].SetLapTime(FormatTime(_sortedPlayers[i].Player.lapEndTime - _sortedPlayers[i].Player.lapStartTime));
         }
 
         for (int i = _sortedPlayers.Count; i < _rankUI.Count; i++)
