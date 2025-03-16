@@ -2,7 +2,6 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
-.utmp/
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
@@ -48,6 +47,9 @@ ExportedObj/
 *.opendb
 *.VC.db
 
+# Meta Files 
+!*.*.meta
+
 # Unity3D generated meta files
 *.pidb.meta
 *.pdb.meta
@@ -60,7 +62,6 @@ sysinfo.txt
 *.apk
 *.aab
 *.unitypackage
-*.unitypackage.meta
 *.app
 
 # Crashlytics generated file

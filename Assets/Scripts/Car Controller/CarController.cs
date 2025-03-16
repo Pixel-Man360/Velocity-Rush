@@ -71,6 +71,11 @@ public class CarController : NetworkBehaviour
             {
                 _carEffects.Boost();
             }
+
+            else
+            {
+                _carEffects.StopBoost();
+            }
             _carMovement.Move(_input.Horizontal, _input.Vertical, _input.IsHandbraking, _input.IsBoosting);
             _carEffects.BrakeFeel(_input.IsHandbraking, _carMovement.IsSlipping, _input.Vertical);
         }
@@ -212,6 +217,11 @@ public class CarEffects
     internal void Boost()
     {
         _nitroParticles.ForEach(particle => particle.Play());
+    }
+
+    internal void StopBoost()
+    {
+        _nitroParticles.ForEach(particle => particle.Stop());
     }
 
     internal void BrakeFeel(bool isHandbraking, bool isSlipping, float throttleInput)

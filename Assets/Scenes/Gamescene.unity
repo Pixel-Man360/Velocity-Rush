@@ -7688,7 +7688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eb6b233a6b563f47a805c4ba12753cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minPlayersToStart: 1
+  _minPlayersToStart: 2
   _countdownText: {fileID: 1712018237}
   _spawner: {fileID: 959063091}
   _checkPoints:
