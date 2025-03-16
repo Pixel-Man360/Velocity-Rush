@@ -90,34 +90,26 @@ public class NetworkRaceManager : NetworkBehaviour
         for (int i = 0; i < _sortedPlayers.Count; i++)
         {
             int position = i + 1;
-            _sortedPlayers[i].Player.position = position;
-
-            // Show positions on the UI (for the host)
-            if (Object.HasStateAuthority)
-            {
-                _playerPositionUI[i].SetPlayerPosition(position, _sortedPlayers[i].Player.name);
-            }
+            _sortedPlayers[i].SetPosition(position);
         }
 
-        // Update positions for clients via RPC
-        if (Object.HasStateAuthority)
-        {
-            RPC_UpdatePlayerPositions();
-        }
+        // Update UI on all clients
+        RPC_UpdatePlayerPositionUI();
     }
 
     [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
-    private void RPC_UpdatePlayerPositions()
+    private void RPC_UpdatePlayerPositionUI()
     {
-        for (int i = 0; i < _sortedPlayers.Count; i++)
+        _players.Sort((a, b) => a.Player.position.CompareTo(b.Player.position));
+        for (int i = 0; i < _playerPositionUI.Count; i++)
         {
-            int position = i + 1;
-            string playerName = _sortedPlayers[i].Player.name;
-
-            // Update the UI for each player
-            if (i < _playerPositionUI.Count)
+            if(i < _players.Count)
             {
-                _playerPositionUI[i].SetPlayerPosition(position, playerName);
+                _playerPositionUI[i].SetPlayerPosition(_players[i].Player.position, _players[i].Player.name);
+            }
+            else
+            {
+                _playerPositionUI[i].SetPlayerPosition(i + 1, "No Player");
             }
         }
     }

@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Fusion;
 using UnityEngine;
 
-public class CheckPoint : MonoBehaviour
+public class CheckPoint : NetworkBehaviour
 {
     [SerializeField] private CheckPointType checkPointType;
     private int checkPointIndex;

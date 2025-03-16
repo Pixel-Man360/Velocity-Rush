@@ -42,18 +42,36 @@ public class CarController : NetworkBehaviour
         if (Object.HasStateAuthority)
         {
             _player.name = $"Player {Random.Range(5000, 10000)}";
-            _nameTagUI.SetPlayerName(_player.name);
-            _player.currentCheckpoint = NetworkRaceManager.Instance.GetNextCheckPoint(0);
-            _player.checkpointsPassed = 0;
-            _player.distanceToNextCheckpoint = 0;
-            _player.position = 0;
         }
+
+        _nameTagUI.SetPlayerName(_player.name);
+        _player.currentCheckpoint = NetworkRaceManager.Instance.GetNextCheckPoint(0);
+        _player.checkpointsPassed = 0;
+        _player.distanceToNextCheckpoint = 0;
+        _player.position = 0;
+    }
+
+    public void SetPosition(int newPosition)
+    {
+        if (Object.HasStateAuthority)
+        {
+            _player.position = newPosition;
+        }
+    }
+
+    public int GetPosition()
+    {
+        return _player.position;
     }
 
     public override void FixedUpdateNetwork()
     {
         if (GetInput(out _input) && _canMove)
         {
+            if (_input.IsBoosting)
+            {
+                _carEffects.Boost();
+            }
             _carMovement.Move(_input.Horizontal, _input.Vertical, _input.IsHandbraking, _input.IsBoosting);
             _carEffects.BrakeFeel(_input.IsHandbraking, _carMovement.IsSlipping, _input.Vertical);
         }
@@ -178,6 +196,7 @@ public class CarEffects
     [SerializeField] private AudioSource _collisionSound;
     [SerializeField] private List<ParticleSystem> _skidsmoke;
     [SerializeField] private List<TrailRenderer> _tireMarks;
+    [SerializeField] private List<ParticleSystem> _nitroParticles;
 
     internal void StartEngineSound()
     {
@@ -189,6 +208,11 @@ public class CarEffects
     internal void UpdateEngineSound(float speed)
     {
         _engineSound.pitch = Mathf.Lerp(1f, 3f, speed / 100f);
+    }
+
+    internal void Boost()
+    {
+        _nitroParticles.ForEach(particle => particle.Play());
     }
 
     internal void BrakeFeel(bool isHandbraking, bool isSlipping, float throttleInput)

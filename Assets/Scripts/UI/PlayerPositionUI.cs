@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Fusion;
 using TMPro;
 using UnityEngine;
 
-public class PlayerPositionUI : MonoBehaviour
+public class PlayerPositionUI : NetworkBehaviour
 {
     [SerializeField] private TMP_Text txt;
     [SerializeField] private TMP_Text lapTimeText;
