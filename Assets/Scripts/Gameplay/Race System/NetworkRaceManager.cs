@@ -100,12 +100,12 @@ public class NetworkRaceManager : NetworkBehaviour
     [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
     private void RPC_UpdatePlayerPositionUI()
     {
-        _players.Sort((a, b) => a.Player.position.CompareTo(b.Player.position));
+        _players.Sort((a, b) => a.GetPosition().CompareTo(b.GetPosition()));
         for (int i = 0; i < _playerPositionUI.Count; i++)
         {
             if(i < _players.Count)
             {
-                _playerPositionUI[i].SetPlayerPosition(_players[i].Player.position, _players[i].Player.name);
+                _playerPositionUI[i].SetPlayerPosition(i + 1, _players[i].Player.name);
             }
             else
             {

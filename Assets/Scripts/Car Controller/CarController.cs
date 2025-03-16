@@ -42,13 +42,12 @@ public class CarController : NetworkBehaviour
         if (Object.HasStateAuthority)
         {
             _player.name = $"Player {Random.Range(5000, 10000)}";
+            _nameTagUI.SetPlayerName(_player.name);
+            _player.currentCheckpoint = NetworkRaceManager.Instance.GetNextCheckPoint(0);
+            _player.checkpointsPassed = 0;
+            _player.distanceToNextCheckpoint = 0;
+            _player.position = 0;
         }
-
-        _nameTagUI.SetPlayerName(_player.name);
-        _player.currentCheckpoint = NetworkRaceManager.Instance.GetNextCheckPoint(0);
-        _player.checkpointsPassed = 0;
-        _player.distanceToNextCheckpoint = 0;
-        _player.position = 0;
     }
 
     public void SetPosition(int newPosition)

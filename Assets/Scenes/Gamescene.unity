@@ -136,6 +136,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6823494777225037105, guid: 9ee0485467d514ff9968ed7fdb42148a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.22
+      objectReference: {fileID: 0}
     - target: {fileID: 8452727528735818250, guid: 9ee0485467d514ff9968ed7fdb42148a,
         type: 3}
       propertyPath: m_RootOrder
@@ -888,6 +893,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Checkpoint (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823494777225037105, guid: 9ee0485467d514ff9968ed7fdb42148a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.69
       objectReference: {fileID: 0}
     - target: {fileID: 8452727528735818250, guid: 9ee0485467d514ff9968ed7fdb42148a,
         type: 3}
@@ -2484,6 +2494,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 6637909543010005957, guid: 9ee0485467d514ff9968ed7fdb42148a,
+        type: 3}
+      propertyPath: InitialModule.startRotation.scalar
+      value: 0.34906584
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823494777225037105, guid: 9ee0485467d514ff9968ed7fdb42148a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823494777225037105, guid: 9ee0485467d514ff9968ed7fdb42148a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823494777225037105, guid: 9ee0485467d514ff9968ed7fdb42148a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.18
+      objectReference: {fileID: 0}
     - target: {fileID: 8452727528735818250, guid: 9ee0485467d514ff9968ed7fdb42148a,
         type: 3}
       propertyPath: m_RootOrder
@@ -2994,6 +3024,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6823494777225037105, guid: 9ee0485467d514ff9968ed7fdb42148a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.47
+      objectReference: {fileID: 0}
     - target: {fileID: 8452727528735818250, guid: 9ee0485467d514ff9968ed7fdb42148a,
         type: 3}
       propertyPath: m_RootOrder
@@ -3315,7 +3350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 2335355206
   ObjectInterest: 1
-  Flags: 1
+  Flags: 262145
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 316315249}
@@ -3582,7 +3617,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 3235817095
   ObjectInterest: 1
-  Flags: 1
+  Flags: 262145
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 9402861}
@@ -4123,6 +4158,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 889129767}
+    - targetCorrespondingSourceObject: {fileID: 1997549933977344, guid: 727fd57c75e348d48a78fa63f179d599,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 889129770}
   m_SourcePrefab: {fileID: 100100000, guid: 727fd57c75e348d48a78fa63f179d599, type: 3}
 --- !u!1 &889129762 stripped
 GameObject:
@@ -4145,7 +4184,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -4170,6 +4209,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkPointType: 2
+--- !u!114 &889129770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889129762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 369540653
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 889129767}
+  ForceRemoteRenderTimeframe: 0
 --- !u!1 &894407591
 GameObject:
   m_ObjectHideFlags: 0
@@ -5548,6 +5606,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6823494777225037105, guid: 9ee0485467d514ff9968ed7fdb42148a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.44
+      objectReference: {fileID: 0}
     - target: {fileID: 8452727528735818250, guid: 9ee0485467d514ff9968ed7fdb42148a,
         type: 3}
       propertyPath: m_RootOrder
@@ -6316,6 +6379,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Checkpoint (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823494777225037105, guid: 9ee0485467d514ff9968ed7fdb42148a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.51
       objectReference: {fileID: 0}
     - target: {fileID: 8452727528735818250, guid: 9ee0485467d514ff9968ed7fdb42148a,
         type: 3}
@@ -7620,7 +7688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eb6b233a6b563f47a805c4ba12753cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minPlayersToStart: 2
+  _minPlayersToStart: 1
   _countdownText: {fileID: 1712018237}
   _spawner: {fileID: 959063091}
   _checkPoints:
@@ -7802,6 +7870,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1556540223}
     m_Modifications:
+    - target: {fileID: 513093843873245722, guid: 9ee0485467d514ff9968ed7fdb42148a,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6003887439992673246, guid: 9ee0485467d514ff9968ed7fdb42148a,
         type: 3}
       propertyPath: m_Name
@@ -7815,12 +7888,12 @@ PrefabInstance:
     - target: {fileID: 8452727528735818250, guid: 9ee0485467d514ff9968ed7fdb42148a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 140.7
+      value: 140.82
       objectReference: {fileID: 0}
     - target: {fileID: 8452727528735818250, guid: 9ee0485467d514ff9968ed7fdb42148a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.29
+      value: -0.67
       objectReference: {fileID: 0}
     - target: {fileID: 8452727528735818250, guid: 9ee0485467d514ff9968ed7fdb42148a,
         type: 3}
@@ -7830,22 +7903,22 @@ PrefabInstance:
     - target: {fileID: 8452727528735818250, guid: 9ee0485467d514ff9968ed7fdb42148a,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9996965
       objectReference: {fileID: 0}
     - target: {fileID: 8452727528735818250, guid: 9ee0485467d514ff9968ed7fdb42148a,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8452727528735818250, guid: 9ee0485467d514ff9968ed7fdb42148a,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8452727528735818250, guid: 9ee0485467d514ff9968ed7fdb42148a,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.024638288
       objectReference: {fileID: 0}
     - target: {fileID: 8452727528735818250, guid: 9ee0485467d514ff9968ed7fdb42148a,
         type: 3}
@@ -7860,7 +7933,7 @@ PrefabInstance:
     - target: {fileID: 8452727528735818250, guid: 9ee0485467d514ff9968ed7fdb42148a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 2.824
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8127,7 +8200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 2113485967
   ObjectInterest: 1
-  Flags: 1
+  Flags: 262145
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 1672101881}
@@ -11021,7 +11094,7 @@ MonoBehaviour:
   m_RebuildOnSplineChange: 0
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
-  m_Sides: 4
+  m_Sides: 8
   m_SegmentsPerUnit: 4
   m_Capped: 1
   m_Radius: 0.25

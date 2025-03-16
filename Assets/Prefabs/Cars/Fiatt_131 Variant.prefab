@@ -237,7 +237,7 @@ PrefabInstance:
     - target: {fileID: 3835174855288956515, guid: 92dc9059c105be646920e7793f7b87ad,
         type: 3}
       propertyPath: NetworkedBehaviours.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3835174855288956515, guid: 92dc9059c105be646920e7793f7b87ad,
         type: 3}
@@ -253,7 +253,7 @@ PrefabInstance:
         type: 3}
       propertyPath: NetworkedBehaviours.Array.data[2]
       value: 
-      objectReference: {fileID: 4483349364131896631}
+      objectReference: {fileID: 2637344473793290304}
     - target: {fileID: 6096161435309845058, guid: 92dc9059c105be646920e7793f7b87ad,
         type: 3}
       propertyPath: m_Name

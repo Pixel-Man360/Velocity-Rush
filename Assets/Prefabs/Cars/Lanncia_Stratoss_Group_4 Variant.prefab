@@ -1712,6 +1712,7 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 7179983840249572912}
   - {fileID: -1574741014957942632}
+  - {fileID: 6444900617379018416}
   ForceRemoteRenderTimeframe: 0
 --- !u!4 &5008263720197315197 stripped
 Transform:
